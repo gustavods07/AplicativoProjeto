@@ -42,28 +42,54 @@ public class MainCadastro extends AppCompatActivity {
 
             if(confirma.equals(senha)){
 
-
-                Ion.with(MainCadastro.this)
-                        .load(URL)
-                        .asJsonObject()
-                        .setCallback(new FutureCallback<JsonObject>() {
-                            @Override
-                            public void onCompleted(Exception e, JsonObject result) {
-
-                                try{
-
-                                    Toast.makeText(MainCadastro.this, "Nome: " + result.get("NOME").getAsString(), Toast.LENGTH_LONG).show();
+                if(nome.isEmpty() || email.isEmpty() || senha.isEmpty()){
+                    Toast.makeText(MainCadastro.this, "Nenhum campo deve permanecer vazio", Toast.LENGTH_LONG).show();
 
 
-                                } catch (Exception erro ) {
+                } else {
 
-                                    Toast.makeText(MainCadastro.this, "Ops, ocorreu um erro, " + erro, Toast.LENGTH_LONG).show();
 
+                    Ion.with(MainCadastro.this)
+                            .load(URL)
+                            .setBodyParameter("nome_app", nome)
+                            .setBodyParameter("email_app", email)
+                            .setBodyParameter("senha_app", senha)
+                            .asJsonObject()
+                            .setCallback(new FutureCallback<JsonObject>() {
+                                @Override
+                                public void onCompleted(Exception e, JsonObject result) {
+
+                                    try {
+
+                                        //Toast.makeText(MainCadastro.this, "Nome: " + result.get("NOME").getAsString(), Toast.LENGTH_LONG).show();
+                                        String RETORNO = result.get("CADASTRO").getAsString();
+
+                                        if(RETORNO.equals("EMAIL_ERRO")){
+
+                                            Toast.makeText(MainCadastro.this, "Ops,  este email já foi cadastrado" , Toast.LENGTH_LONG).show();
+
+
+                                        } else if(RETORNO.equals("SUCESSO")){
+
+                                            Toast.makeText(MainCadastro.this, "Cadastrado com sucesso" , Toast.LENGTH_LONG).show();
+
+
+                                        } else {
+
+                                            Toast.makeText(MainCadastro.this, "Ops,  ocorreu um erro!" , Toast.LENGTH_LONG).show();
+
+
+                                        }
+
+                                    } catch (Exception erro) {
+
+                                        Toast.makeText(MainCadastro.this, "Ops, ocorreu um erro, " + erro, Toast.LENGTH_LONG).show();
+
+                                    }
                                 }
-                            }
-                        });
+                            });
 
-
+                }
             } else {
 
                 Toast.makeText(MainCadastro.this, "As senhas não conferem", Toast.LENGTH_LONG).show();
