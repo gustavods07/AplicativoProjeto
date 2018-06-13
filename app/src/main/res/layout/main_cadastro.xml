@@ -22,12 +22,14 @@
     <EditText
         android:hint="Insira sua senha"
         android:id="@+id/editSenhaCad"
+        android:inputType="numberPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:hint="Confirme sua senha"
         android:id="@+id/editSenhaConf"
+        android:inputType="numberPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

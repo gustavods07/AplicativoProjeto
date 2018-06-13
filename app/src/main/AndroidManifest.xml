@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".TelaVerProdutos" />
         <activity android:name=".MainLogin" />
-        <activity android:name=".MainCadastro"></activity>
+        <activity android:name=".MainCadastro" />
+        <activity android:name=".MainPrincipal"></activity>
     </application>
 
 </manifest>

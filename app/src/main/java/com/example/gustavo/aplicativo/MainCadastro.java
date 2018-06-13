@@ -1,5 +1,6 @@
 package com.example.gustavo.aplicativo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -71,12 +72,12 @@ public class MainCadastro extends AppCompatActivity {
 
                                         } else if(RETORNO.equals("SUCESSO")){
 
-                                            Toast.makeText(MainCadastro.this, "Cadastrado com sucesso" , Toast.LENGTH_LONG).show();
-
+                                            Intent abrePrincipal = new Intent(MainCadastro.this, MainPrincipal.class);
+                                            startActivity(abrePrincipal);
 
                                         } else {
 
-                                            Toast.makeText(MainCadastro.this, "Ops,  ocorreu um erro!" , Toast.LENGTH_LONG).show();
+                                            Toast.makeText(MainCadastro.this, "Ops,  ocorreu um erro!   " , Toast.LENGTH_LONG).show();
 
 
                                         }
@@ -102,5 +103,12 @@ public class MainCadastro extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        finish();
     }
 }
