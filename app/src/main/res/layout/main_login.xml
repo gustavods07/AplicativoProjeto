@@ -16,6 +16,7 @@
     <EditText
         android:hint="Insira sua senha"
         android:id="@+id/editSenhaLogar"
+        android:inputType="numberPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
